@@ -1,5 +1,5 @@
 
-package generators;
+package test.generators;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -7,11 +7,10 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import generators.LottoGenerator;
 
 class LottoGeneratorTest {
 
@@ -59,12 +58,14 @@ class LottoGeneratorTest {
 			generatedNumbers1 = lottoGenerator.generateBet(list1);
 			generatedNumbers2 = lottoGenerator.generateBet(list2);
 
-			/* add generated tipp numbers */
+			/* add generated tipp numbers and check if any number is not in [1,49] */
 			for (int num : generatedNumbers1) {
 				collection1.add(num);
+				assertTrue(1 <= num && num <= 49);
 			}
 			for (int num : generatedNumbers2) {
 				collection2.add(num);
+				assertTrue(1 <= num && num <= 49);
 			}
 		}
 		
