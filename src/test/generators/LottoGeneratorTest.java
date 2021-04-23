@@ -46,7 +46,7 @@ class LottoGeneratorTest {
 
 	@Test
 	void testGenerationOfUnluckyNumbers() {
-		/* contains every generated tipp number*/
+		/* contains every generated tipp number */
 		List<Integer> collection1 = new LinkedList<>();
 		List<Integer> collection2 = new LinkedList<>();
 
@@ -68,14 +68,14 @@ class LottoGeneratorTest {
 				assertTrue(1 <= num && num <= 49);
 			}
 		}
-		
+
 		/* sorting for better performance */
 		collection1.sort((val1, val2) -> val1 - val2);
 		collection2.sort((val1, val2) -> val1 - val2);
-		
+
 		boolean hasDuplicates1 = false;
 		boolean hasDuplicates2 = false;
-		
+
 		/* checking if generated numbers contain any unlucky number */
 		for (int num : list1) {
 			hasDuplicates1 = collection1.contains(num) ? true : hasDuplicates1;
@@ -83,7 +83,7 @@ class LottoGeneratorTest {
 		for (int num : list2) {
 			hasDuplicates2 = collection2.contains(num) ? true : hasDuplicates2;
 		}
-		
+
 		assertFalse(hasDuplicates1);
 		assertFalse(hasDuplicates2);
 	}
