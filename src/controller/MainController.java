@@ -21,6 +21,8 @@ public class MainController {
 		applicationStartUserInput = args;
 		initializeController();
 		logController.initializeLogger();
+		
+		logger.info("Initializing completed.");
 	}
 
 	/**

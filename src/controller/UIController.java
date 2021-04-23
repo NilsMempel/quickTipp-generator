@@ -17,7 +17,7 @@ public class UIController {
 
 	/* gets user input thorugh the console */
 	private Scanner scanner;
-	
+
 	private Logger logger;
 
 	/* predefined input shortcuts for centext menu options */
@@ -69,16 +69,19 @@ public class UIController {
 				isValid = generationController.validateUnluckyNumbers(applicationStartUserInput);
 			} catch (IllegalUserInputException e) {
 				System.out.println(e.getMessage());
+				logger.info("Illegal user input.");
 			}
 
 			/* no input */
 			if (isValid && applicationStartUserInput.length == 0) {
 				generationController.getUnluckyNumbers();
 				System.out.println(USER_INPUT_DIALOGUE_LOAD);
+				logger.info("Illegal user input.");
 				/* valid input */
 			} else if (isValid) {
 				generationController.setUnluckyNumbers(applicationStartUserInput);
 				System.out.println(USER_INPUT_DIALOGUE_SAVED_MESSAGE);
+				logger.info("Valid user input.");
 				/* input not valid */
 			} else {
 				System.out.println(USER_INPUT_DIALOGUE_MESSAGE);
@@ -95,8 +98,12 @@ public class UIController {
 
 			userInput = scanner.nextLine();
 
+			logger.info("Userinput: " + userInput);
+
 			processUserInput(userInput);
 		}
+		
+		logger.info("Application terminates.");
 	}
 
 	private void processUserInput(String userInput) {
@@ -125,10 +132,13 @@ public class UIController {
 			break;
 		}
 
+		logger.info("User input succesfully processed.");
+
 	}
 
 	private void showContextMenuDialogue() {
 		System.out.println(CONTEXT_MENU_DIALOGUE_MESSAGE + "\n");
+		logger.info("Context menu displayed to user.");
 	}
 
 	/**

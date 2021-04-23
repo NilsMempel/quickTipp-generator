@@ -51,7 +51,7 @@ public class LogController {
 			e.printStackTrace();
 		}
 		
-		logger.info("Logging initialized and configured.");
+		logger.info("Logger initialized and configured.");
 
 	}
 
@@ -79,6 +79,8 @@ public class LogController {
 		} catch (IOException i) {
 			i.printStackTrace();
 		}
+		
+		logger.info("Unlucky numbers saved.");
 	}
 
 	public int[] loadUnluckyNumbers() {
@@ -98,6 +100,9 @@ public class LogController {
 		} catch (ClassNotFoundException c) {
 			c.printStackTrace();
 		}
+		
+		logger.info("Unlucky numbers loaded.");
+		
 		return loadedUnluckyNumbers;
 	}
 

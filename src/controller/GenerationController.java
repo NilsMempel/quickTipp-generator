@@ -66,6 +66,9 @@ public class GenerationController {
 			if (num < MINIMUM_UNLUCKYNUMBER || num > MAXIMUM_UNLUCKYNUMBER)
 				throw new IllegalUserInputException(USER_INPUT_ERROR_MESSAGE_OUTOFRANGE);
 		}
+		
+		logger.info("Unlucky numbers validated.");
+		
 		return true;
 	}
 
@@ -120,11 +123,20 @@ public class GenerationController {
 	}
 
 	public int[] generateLottoBet() {
-		return lottoGenerator.generateBet(convertToCollection(unluckyNumbers));
+		int[] val = lottoGenerator.generateBet(convertToCollection(unluckyNumbers));
+		
+		logger.info("Lotto bet generated.");
+		
+		return val;
+		
 	}
 	
 	public int[] generateEurojackpotBet() {
-		return eurojackpotGenerator.generateBet(convertToCollection(unluckyNumbers));
+		int[] val = eurojackpotGenerator.generateBet(convertToCollection(unluckyNumbers));
+		
+		logger.info("Eurojackpot bet generated");
+		
+		return val;
 	}
 
 	private Collection<Integer> convertToCollection(int[] arr) {
