@@ -9,24 +9,28 @@ public class LottoGenerator implements BetGenerator {
 	private static final int MINIMUM_BETNUMBER = 1;
 	private static final int MAXIMUM_BETNUMBER = 49;
 
+	public LottoGenerator() {
+		super();
+	}
+	
 	@Override
 	public int[] generateBet(Collection<Integer> unluckyNumbers) {
 		/* will be filled and returned */
 		int[] bet = new int[BET_LENGTH];
-		
+
 		Random random = new Random();
-		
+
 		int nextBetNumber;
 
 		/* iterate over bet array */
 		for (int i = 0; i < BET_LENGTH; i++) {
 			boolean isUnluckyNumber = false;
-			
+
 			/* iterate until random number is found which is not an unlucky number */
 			while (!isUnluckyNumber) {
 				/* generate random int in the interval [1,49] */
 				nextBetNumber = random.nextInt(MAXIMUM_BETNUMBER + 1 - MINIMUM_BETNUMBER) + MINIMUM_BETNUMBER;
-				
+
 				/* test if generated tipp number is an unlucky number */
 				for (int j : unluckyNumbers) {
 					if (nextBetNumber == j) {
@@ -34,7 +38,7 @@ public class LottoGenerator implements BetGenerator {
 						break;
 					}
 				}
-				
+
 				/* test if generated tipp number is already selected */
 				for (int k : bet) {
 					if (nextBetNumber == k) {
@@ -42,7 +46,7 @@ public class LottoGenerator implements BetGenerator {
 						break;
 					}
 				}
-				
+
 				/* stop iteration if generated tipp number is valid */
 				if (!isUnluckyNumber) {
 					bet[i] = nextBetNumber;

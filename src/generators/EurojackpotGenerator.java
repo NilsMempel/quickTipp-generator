@@ -15,6 +15,10 @@ public class EurojackpotGenerator implements BetGenerator {
 	private static final int MINIMUM_BETNUMBER_SECONDPART = 1;
 	private static final int MAXIMUM_BETNUMBER_SECONDPART = 10;
 
+	public EurojackpotGenerator() {
+		super();
+	}
+
 	@Override
 	public int[] generateBet(Collection<Integer> unluckyNumbers) {
 		/* will be filled and returned */
@@ -64,7 +68,7 @@ public class EurojackpotGenerator implements BetGenerator {
 						}
 					}
 				} else if (i == BET_LENGTH - 1 && !isUnluckyNumber)
-					isUnluckyNumber = bet[i - 1] == bet[i];
+					isUnluckyNumber = bet[i - 1] == nextBetNumber;
 
 				/* stop iteration if generated tipp number is valid */
 				if (!isUnluckyNumber) {
