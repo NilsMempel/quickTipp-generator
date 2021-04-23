@@ -1,10 +1,14 @@
 package controller;
 
+import java.util.logging.Logger;
+
 public class MainController {
 
 	private LogController logController;
 	private UIController uiController;
 	private GenerationController generationController;
+	
+	private Logger logger;
 
 	/* store user input from program start */
 	private String[] applicationStartUserInput;
@@ -16,6 +20,7 @@ public class MainController {
 	public MainController(String[] args) {
 		applicationStartUserInput = args;
 		initializeController();
+		logController.initializeLogger();
 	}
 
 	/**
@@ -88,5 +93,9 @@ public class MainController {
 	 */
 	public void setGenerationController(GenerationController generationController) {
 		this.generationController = generationController;
+	}
+
+	public void setLogger(Logger logger) {
+		this.logger = logger;
 	}
 }

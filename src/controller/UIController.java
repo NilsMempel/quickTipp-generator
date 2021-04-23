@@ -2,6 +2,7 @@ package controller;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 import util.IllegalUserInputException;
 
@@ -16,6 +17,8 @@ public class UIController {
 
 	/* gets user input thorugh the console */
 	private Scanner scanner;
+	
+	private Logger logger;
 
 	/* predefined input shortcuts for centext menu options */
 	private static final String CONTEXT_MENU_DIALOGUE_OPTION_END_SHORTCUT = "b";
@@ -140,6 +143,10 @@ public class UIController {
 	 */
 	public void setLogController(LogController logController) {
 		this.logController = logController;
+	}
+
+	public void setLogger(Logger logger) {
+		this.logger = logger;
 	}
 
 }

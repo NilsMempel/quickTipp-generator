@@ -1,0 +1,4 @@
+Apr. 23, 2021 6:01:56 PM controller.LogController configureLogger
+INFO: Logging initialized and configured.
+Apr. 23, 2021 6:01:56 PM controller.MainController <init>
+SEVERE: TESTESTEST

@@ -5,6 +5,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.System.Logger;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.SimpleFormatter;
 
 public class LogController {
 
@@ -12,8 +16,43 @@ public class LogController {
 	private UIController uiController;
 	private GenerationController generationController;
 
+	private java.util.logging.Logger logger;
+
 	public LogController(MainController mainController) {
 		this.mainController = mainController;
+	}
+	
+	public void initializeLogger() {
+		configureLogger();
+		passLoggerToController();
+	}
+
+	private void passLoggerToController() {
+		mainController.setLogger(logger);
+		generationController.setLogger(logger);
+		uiController.setLogger(logger);
+	}
+
+	private void configureLogger() {
+		logger = logger.getGlobal();
+
+		logger.setLevel(Level.ALL);
+		
+		logger.setUseParentHandlers(false);
+
+		try {
+			FileHandler fileHandler;
+			fileHandler = new FileHandler("src/data/logging");
+			fileHandler.setFormatter(new SimpleFormatter());
+			logger.addHandler(fileHandler);
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		logger.info("Logging initialized and configured.");
+
 	}
 
 	/**

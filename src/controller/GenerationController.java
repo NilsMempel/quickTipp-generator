@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import generators.EurojackpotGenerator;
 import generators.LottoGenerator;
@@ -21,6 +22,8 @@ public class GenerationController {
 	private EurojackpotGenerator eurojackpotGenerator;
 
 	private int[] unluckyNumbers;
+	
+	private Logger logger;
 
 	/* minumum and maximum of possible unlucky numbers */
 	private static final int MINIMUM_UNLUCKYNUMBER = 1;
@@ -34,7 +37,7 @@ public class GenerationController {
 	private static final String USER_INPUT_ERROR_MESSAGE_OUTOFRANGE = String
 			.format("Alle Zahlen muessen zwischen %d und %d liegen.", MINIMUM_UNLUCKYNUMBER, MAXIMUM_UNLUCKYNUMBER);
 	private static final String USER_INPUT_ERROR_MESSAGE_TOOMANYARGUMENTS = String
-			.format("Es duerfen maximal %d Zahlen übergeben werden", MAXIMUM_QUANTITY_UNLUCKYNUMBER);
+			.format("Es duerfen maximal %d Zahlen übergeben werden.", MAXIMUM_QUANTITY_UNLUCKYNUMBER);
 
 	public GenerationController(MainController mainController) {
 		this.mainController = mainController;
@@ -131,6 +134,10 @@ public class GenerationController {
 		}
 
 		return collection;
+	}
+
+	public void setLogger(Logger logger) {
+		this.logger = logger;
 	}
 
 }
