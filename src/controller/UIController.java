@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 import util.IllegalUserInputException;
@@ -16,15 +17,30 @@ public class UIController {
 	/* gets user input thorugh the console */
 	private Scanner scanner;
 
+	/* predefined input shortcuts for centext menu options */
+	private static final String CONTEXT_MENU_DIALOGUE_OPTION_END_SHORTCUT = "b";
+	private static final String CONTEXT_MENU_DIALOGUE_OPTION_SHOW_UNLUCKYNUMBERS_SHORTCUT = "u";
+	private static final String CONTEXT_MENU_DIALOGUE_OPTION_DELETE_UNLUCKYNUMBERS_SHORTCUT = "d";
+	private static final String CONTEXT_MENU_DIALOGUE_OPTION_GENERATE_LOTTO_SHORTCUT = "lotto";
+	private static final String CONTEXT_MENU_DIALOGUE_OPTION_GENERATE_EUROJACKPOT_SHORTCUT = "euro";
+
 	/* predefined options in context menu */
-	private static final String CONTEXT_MENU_DIALOGUE_OPTION_END = "BEENDEN (Eingabe -> 'b')";
-	private static final String CONTEXT_MENU_DIALOGUE_OPTION_SHOW_UNLUCKYNUMBERS = "UNGLUECKSZAHLEN ANZEIGEN (Eingabe -> 'u')";
-	private static final String CONTEXT_MENU_DIALOGUE_OPTION_DELETE_UNLUCKYNUMBERS = "UNGLUECKSZAHLEN LOESCHEN (Eingabe -> 'l')";
-	private static final String CONTEXT_MENU_DIALOGUE_OPTION_GENERATE_LOTTO = "QUICKTIPP LOTTO (Eingabe -> 'lotto')";
-	private static final String CONTEXT_MENU_DIALOGUE_OPTION_GENERATE_EUROJACKPOT = "QUICKTIPP EUROJACKPOT (Eingabe -> 'euro')";
+	private static final String CONTEXT_MENU_DIALOGUE_OPTION_END = String.format("BEENDEN (Eingabe -> '%s')",
+			CONTEXT_MENU_DIALOGUE_OPTION_END_SHORTCUT);
+	private static final String CONTEXT_MENU_DIALOGUE_OPTION_SHOW_UNLUCKYNUMBERS = String.format(
+			"UNGLUECKSZAHLEN ANZEIGEN (Eingabe -> '%s')", CONTEXT_MENU_DIALOGUE_OPTION_SHOW_UNLUCKYNUMBERS_SHORTCUT);
+	private static final String CONTEXT_MENU_DIALOGUE_OPTION_DELETE_UNLUCKYNUMBERS = String.format(
+			"UNGLUECKSZAHLEN LOESCHEN (Eingabe -> '%s')", CONTEXT_MENU_DIALOGUE_OPTION_DELETE_UNLUCKYNUMBERS_SHORTCUT);
+	private static final String CONTEXT_MENU_DIALOGUE_OPTION_GENERATE_LOTTO = String
+			.format("QUICKTIPP LOTTO (Eingabe -> '%s')", CONTEXT_MENU_DIALOGUE_OPTION_GENERATE_LOTTO_SHORTCUT);
+	private static final String CONTEXT_MENU_DIALOGUE_OPTION_GENERATE_EUROJACKPOT = String.format(
+			"QUICKTIPP EUROJACKPOT (Eingabe -> '%s')", CONTEXT_MENU_DIALOGUE_OPTION_GENERATE_EUROJACKPOT_SHORTCUT);
 
 	/* predefined message for user input */
 	private static final String USER_INPUT_DIALOGUE_MESSAGE = "Geben Sie Ihre Unglueckszahlen erneut ein (In einer Reihe und durch ein Leerzeichen getrennt).";
+	private static final String USER_INPUT_DIALOGUE_INVALID_MESSAGE = "Ihre Eingabe war ungueltig.";
+	private static final String USER_INPUT_DIALOGUE_ENDAPPLICATION_MESSAGE = "Die Anwendung wurde beendet.";
+	private static final String USER_INPUT_DIALOGUE_DELETE_MESSAGE = "Ihre Unglueckszahlen wurden geloescht.";
 
 	/* predefined message to show in context menu */
 	private static final String CONTEXT_MENU_DIALOGUE_MESSAGE = String.format(
@@ -66,17 +82,48 @@ public class UIController {
 	}
 
 	public void listenToEvents() {
+		String userInput;
 		while (!endApplication) {
 			showContextMenuDialogue();
 
-//			endApplication = true;
+			userInput = scanner.nextLine();
+
+			processUserInput(userInput);
 		}
+	}
+
+	private void processUserInput(String userInput) {
+		switch (userInput) {
+
+		case CONTEXT_MENU_DIALOGUE_OPTION_END_SHORTCUT:
+			endApplication = true;
+			System.out.println(USER_INPUT_DIALOGUE_ENDAPPLICATION_MESSAGE);
+			break;
+		case CONTEXT_MENU_DIALOGUE_OPTION_SHOW_UNLUCKYNUMBERS_SHORTCUT:
+			System.out.println("Unglueckszahlen: " + Arrays.toString(generationController.getUnluckyNumbers()));
+			break;
+		case CONTEXT_MENU_DIALOGUE_OPTION_DELETE_UNLUCKYNUMBERS_SHORTCUT:
+			generationController.setUnluckyNumbers(new String[0]);
+			System.out.println(USER_INPUT_DIALOGUE_DELETE_MESSAGE);
+			break;
+		case CONTEXT_MENU_DIALOGUE_OPTION_GENERATE_LOTTO_SHORTCUT:
+			System.out.println("QuickTipp Lotto: " + Arrays.toString(generationController.generateLottoBet()));
+			break;
+		case CONTEXT_MENU_DIALOGUE_OPTION_GENERATE_EUROJACKPOT_SHORTCUT:
+			System.out.println(
+					"QuickTipp Eurojackpot: " + Arrays.toString(generationController.generateEurojackpotBet()));
+			break;
+		default:
+			System.out.println(USER_INPUT_DIALOGUE_INVALID_MESSAGE);
+			break;
+		}
+
 	}
 
 	private void showContextMenuDialogue() {
 		System.out.println(CONTEXT_MENU_DIALOGUE_MESSAGE);
-		String userInput = scanner.nextLine();
-		System.out.printf("Input was %s.%n", userInput);
+//		String userInput = scanner.nextLine();
+//		System.out.printf("Input was %s.%n", userInput);
 	}
 
 	/**

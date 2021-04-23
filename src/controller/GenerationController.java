@@ -1,5 +1,10 @@
 package controller;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 import generators.EurojackpotGenerator;
 import generators.LottoGenerator;
@@ -10,16 +15,11 @@ public class GenerationController {
 	private MainController mainController;
 	private UIController uiController;
 	private LogController logController;
-	
+
 	/* quick tipp generators */
 	private LottoGenerator lottoGenerator;
 	private EurojackpotGenerator eurojackpotGenerator;
-	
-	public GenerationController() {
-		lottoGenerator = new LottoGenerator();
-		eurojackpotGenerator = new EurojackpotGenerator();
-	}
-	
+
 	private int[] unluckyNumbers;
 
 	/* minumum and maximum of possible unlucky numbers */
@@ -38,6 +38,8 @@ public class GenerationController {
 
 	public GenerationController(MainController mainController) {
 		this.mainController = mainController;
+		lottoGenerator = new LottoGenerator();
+		eurojackpotGenerator = new EurojackpotGenerator();
 	}
 
 	public boolean validateUnluckyNumbers(String[] userInput) throws IllegalUserInputException {
@@ -57,7 +59,7 @@ public class GenerationController {
 			} catch (NumberFormatException e) {
 				throw new IllegalUserInputException(USER_INPUT_ERROR_MESSAGE_NOINT);
 			}
-			
+
 			if (num < MINIMUM_UNLUCKYNUMBER || num > MAXIMUM_UNLUCKYNUMBER)
 				throw new IllegalUserInputException(USER_INPUT_ERROR_MESSAGE_OUTOFRANGE);
 		}
@@ -95,7 +97,7 @@ public class GenerationController {
 		for (int i = 0; i < userInput.length; i++) {
 			unluckyNumbers[i] = Integer.parseInt(userInput[i]);
 		}
-		
+
 		/* save unlucky numbers */
 		logController.save(unluckyNumbers);
 	}
@@ -112,6 +114,23 @@ public class GenerationController {
 	 */
 	public EurojackpotGenerator getEurojackpotGenerator() {
 		return eurojackpotGenerator;
+	}
+
+	public int[] generateLottoBet() {
+		return lottoGenerator.generateBet(convertToCollection(unluckyNumbers));
+	}
+	
+	public int[] generateEurojackpotBet() {
+		return eurojackpotGenerator.generateBet(convertToCollection(unluckyNumbers));
+	}
+
+	private Collection<Integer> convertToCollection(int[] arr) {
+		List<Integer> collection = new LinkedList<>();
+		for (int i : arr) {
+			collection.add(i);
+		}
+
+		return collection;
 	}
 
 }

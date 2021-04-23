@@ -58,6 +58,9 @@ public class LogController {
 			loadedUnluckyNumbers = (int[]) in.readObject();
 			System.out.println(UNLUCKY_NUMBERS_LOADED_MESSAGE);
 
+		} catch (java.io.EOFException e) {
+			System.out.println(UNLUCKY_NUMBERS_LOADED_MESSAGE);
+			return new int[0];
 		} catch (IOException i) {
 			i.printStackTrace();
 		} catch (ClassNotFoundException c) {
