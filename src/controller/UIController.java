@@ -41,6 +41,8 @@ public class UIController {
 	private static final String USER_INPUT_DIALOGUE_INVALID_MESSAGE = "Ihre Eingabe war ungueltig.";
 	private static final String USER_INPUT_DIALOGUE_ENDAPPLICATION_MESSAGE = "Die Anwendung wurde beendet.";
 	private static final String USER_INPUT_DIALOGUE_DELETE_MESSAGE = "Ihre Unglueckszahlen wurden geloescht.";
+	private static final String USER_INPUT_DIALOGUE_LOAD = "Ihre Unglueckszahlen wurden geladen, da Sie keine Zahlen bei Programmstart angegeben haben.";
+	private static final String USER_INPUT_DIALOGUE_SAVED_MESSAGE = "Ihre Unglueckszahlen wurden gespeichert.";
 
 	/* predefined message to show in context menu */
 	private static final String CONTEXT_MENU_DIALOGUE_MESSAGE = String.format(
@@ -69,9 +71,11 @@ public class UIController {
 			/* no input */
 			if (isValid && applicationStartUserInput.length == 0) {
 				generationController.getUnluckyNumbers();
+				System.out.println(USER_INPUT_DIALOGUE_LOAD);
 				/* valid input */
 			} else if (isValid) {
 				generationController.setUnluckyNumbers(applicationStartUserInput);
+				System.out.println(USER_INPUT_DIALOGUE_SAVED_MESSAGE);
 				/* input not valid */
 			} else {
 				System.out.println(USER_INPUT_DIALOGUE_MESSAGE);
@@ -121,9 +125,7 @@ public class UIController {
 	}
 
 	private void showContextMenuDialogue() {
-		System.out.println(CONTEXT_MENU_DIALOGUE_MESSAGE);
-//		String userInput = scanner.nextLine();
-//		System.out.printf("Input was %s.%n", userInput);
+		System.out.println(CONTEXT_MENU_DIALOGUE_MESSAGE + "\n");
 	}
 
 	/**

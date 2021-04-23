@@ -12,9 +12,6 @@ public class LogController {
 	private UIController uiController;
 	private GenerationController generationController;
 
-	private static final String UNLUCKY_NUMBERS_LOADED_MESSAGE = "Ihre Unglueckszahlen wurden geladen, da Sie keine Zahlen bei Programmstart angegeben haben.";
-	private static final String UNLUCKY_NUMBERS_SAVED_MESSAGE = "Ihre Unglueckszahlen wurden gespeichert.";
-
 	public LogController(MainController mainController) {
 		this.mainController = mainController;
 	}
@@ -40,8 +37,6 @@ public class LogController {
 
 			/* write object to document */
 			out.writeObject(unluckyNumbers);
-			System.out.println(UNLUCKY_NUMBERS_SAVED_MESSAGE);
-
 		} catch (IOException i) {
 			i.printStackTrace();
 		}
@@ -56,10 +51,8 @@ public class LogController {
 
 			/* read object from document */
 			loadedUnluckyNumbers = (int[]) in.readObject();
-			System.out.println(UNLUCKY_NUMBERS_LOADED_MESSAGE);
 
 		} catch (java.io.EOFException e) {
-			System.out.println(UNLUCKY_NUMBERS_LOADED_MESSAGE);
 			return new int[0];
 		} catch (IOException i) {
 			i.printStackTrace();
