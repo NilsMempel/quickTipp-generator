@@ -3,18 +3,31 @@ package generators;
 import java.util.Collection;
 import java.util.Random;
 
+/**
+ * {@code EurojackpotGenerator} generates a quick tipp for Eurojackpot. It is
+ * possible to choose numbers, which the quick tipp cannot contain.
+ * 
+ * @author Nils Mempel
+ *
+ */
 public class EurojackpotGenerator implements BetGenerator {
 
+	/* length of the generated bet */
 	private static final int BET_LENGTH = 7;
 
+	/* length, minimum and maximum number of the first part of the bet */
 	private static final int BET_LENGTH_FIRSTPART = 5;
 	private static final int MINIMUM_BETNUMBER_FIRSTPART = 1;
 	private static final int MAXIMUM_BETNUMBER_FIRSTPART = 50;
 
+	/* length, minimum and maximum number of the second part of the bet */
 	private static final int BET_LENGTH_SECONDPART = 2;
 	private static final int MINIMUM_BETNUMBER_SECONDPART = 1;
 	private static final int MAXIMUM_BETNUMBER_SECONDPART = 10;
 
+	/**
+	 * Calls constructor of super class.
+	 */
 	public EurojackpotGenerator() {
 		super();
 	}

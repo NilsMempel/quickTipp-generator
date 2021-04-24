@@ -2,18 +2,27 @@ package controller;
 
 import java.util.logging.Logger;
 
+/**
+ * {@code mainController} coordinates communication between other controler and initialization including the Logger.
+ * 
+ * @author Nils Mempel
+ *
+ */
 public class MainController {
 
+	/* controler */
 	private LogController logController;
 	private UIController uiController;
 	private GenerationController generationController;
 	
+	/* Logger for logging events in the appplication */
 	private Logger logger;
 
 	/* store user input from program start */
 	private String[] applicationStartUserInput;
 
 	/**
+	 * Stores user input and initializes the other controller and the logger.
 	 * 
 	 * @param args the user input made when the program started
 	 */
@@ -26,7 +35,7 @@ public class MainController {
 	}
 
 	/**
-	 * Starts the Application. If it terminates the application will be closed.
+	 * Starts the application. If it terminates the Application will be closed.
 	 * <p>
 	 * Delegates handling userinput to the {@code UIController}.
 	 */
@@ -97,6 +106,9 @@ public class MainController {
 		this.generationController = generationController;
 	}
 
+	/**
+	 * @param logger the logger to set
+	 */
 	public void setLogger(Logger logger) {
 		this.logger = logger;
 	}

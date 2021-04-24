@@ -8,16 +8,18 @@ import util.IllegalUserInputException;
 
 public class UIController {
 
+	/* controller */
 	private MainController mainController;
 	private GenerationController generationController;
 	private LogController logController;
 
-	/* if true the application terminates */
+	/* if true the Application terminates */
 	private boolean endApplication = false;
 
 	/* gets user input thorugh the console */
 	private Scanner scanner;
 
+	/* Logger for logging events in the appplication */
 	private Logger logger;
 
 	/* predefined input shortcuts for centext menu options */
@@ -54,11 +56,23 @@ public class UIController {
 			CONTEXT_MENU_DIALOGUE_OPTION_DELETE_UNLUCKYNUMBERS, CONTEXT_MENU_DIALOGUE_OPTION_GENERATE_LOTTO,
 			CONTEXT_MENU_DIALOGUE_OPTION_GENERATE_EUROJACKPOT);
 
+	/**
+	 * Sets the {@code mainController} and initializes the {@code scanner} for
+	 * receiving user input through console.
+	 * 
+	 * @param mainController the mainController to set
+	 */
 	public UIController(MainController mainController) {
 		this.mainController = mainController;
 		scanner = new Scanner(System.in);
 	}
 
+	/**
+	 * Processes the user input given at program start from the user. Validates it
+	 * and shows feedback in the console.
+	 * 
+	 * @param applicationStartUserInput user input at program start
+	 */
 	public void processApplicationStartUserInput(String[] applicationStartUserInput) {
 		boolean isValid = false;
 		String newInput;
@@ -91,6 +105,10 @@ public class UIController {
 		}
 	}
 
+	/**
+	 * Listens to the input given from the user through the console. Shows a
+	 * ceontext menu and delegates the handling of the input.
+	 */
 	public void listenToEvents() {
 		String userInput;
 		while (!endApplication) {
@@ -102,31 +120,42 @@ public class UIController {
 
 			processUserInput(userInput);
 		}
-		
+
 		logger.info("Application terminates.");
 	}
 
+	/**
+	 * Processes the user input given through the console.
+	 * 
+	 * @param userInput the user input given through the console
+	 */
 	private void processUserInput(String userInput) {
 		switch (userInput) {
 
+		/* end application */
 		case CONTEXT_MENU_DIALOGUE_OPTION_END_SHORTCUT:
 			endApplication = true;
 			System.out.println(USER_INPUT_DIALOGUE_ENDAPPLICATION_MESSAGE);
 			break;
+		/* show unlucky numbers */
 		case CONTEXT_MENU_DIALOGUE_OPTION_SHOW_UNLUCKYNUMBERS_SHORTCUT:
 			System.out.println("Unglueckszahlen: " + Arrays.toString(generationController.getUnluckyNumbers()));
 			break;
+		/* delete unlucky numbers */
 		case CONTEXT_MENU_DIALOGUE_OPTION_DELETE_UNLUCKYNUMBERS_SHORTCUT:
 			generationController.setUnluckyNumbers(new String[0]);
 			System.out.println(USER_INPUT_DIALOGUE_DELETE_MESSAGE);
 			break;
+		/* generate lotto quick tipp */
 		case CONTEXT_MENU_DIALOGUE_OPTION_GENERATE_LOTTO_SHORTCUT:
 			System.out.println("QuickTipp Lotto: " + Arrays.toString(generationController.generateLottoBet()));
 			break;
+		/* generate eurojackpot quick tipp */
 		case CONTEXT_MENU_DIALOGUE_OPTION_GENERATE_EUROJACKPOT_SHORTCUT:
 			System.out.println(
 					"QuickTipp Eurojackpot: " + Arrays.toString(generationController.generateEurojackpotBet()));
 			break;
+		/* invalid input */
 		default:
 			System.out.println(USER_INPUT_DIALOGUE_INVALID_MESSAGE);
 			break;
@@ -136,6 +165,9 @@ public class UIController {
 
 	}
 
+	/**
+	 * Shows predefined context menu in console.
+	 */
 	private void showContextMenuDialogue() {
 		System.out.println(CONTEXT_MENU_DIALOGUE_MESSAGE + "\n");
 		logger.info("Context menu displayed to user.");
@@ -155,6 +187,9 @@ public class UIController {
 		this.logController = logController;
 	}
 
+	/**
+	 * @param logger the logger to set
+	 */
 	public void setLogger(Logger logger) {
 		this.logger = logger;
 	}

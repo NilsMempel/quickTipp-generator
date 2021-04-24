@@ -1,48 +1,58 @@
-Apr. 23, 2021 6:42:54 PM controller.LogController configureLogger
+Apr. 24, 2021 5:24:08 PM controller.LogController configureLogger
 INFO: Logger initialized and configured.
-Apr. 23, 2021 6:42:54 PM controller.MainController <init>
+Apr. 24, 2021 5:24:08 PM controller.MainController <init>
 INFO: Initializing completed.
-Apr. 23, 2021 6:42:54 PM controller.GenerationController validateUnluckyNumbers
+Apr. 24, 2021 5:24:08 PM controller.GenerationController validateUnluckyNumbers
 INFO: Unlucky numbers validated.
-Apr. 23, 2021 6:42:54 PM controller.LogController save
+Apr. 24, 2021 5:24:08 PM controller.LogController saveUnluckyNumbers
 INFO: Unlucky numbers saved.
-Apr. 23, 2021 6:42:54 PM controller.UIController processApplicationStartUserInput
+Apr. 24, 2021 5:24:08 PM controller.UIController processApplicationStartUserInput
 INFO: Valid user input.
-Apr. 23, 2021 6:42:54 PM controller.UIController showContextMenuDialogue
+Apr. 24, 2021 5:24:08 PM controller.UIController showContextMenuDialogue
 INFO: Context menu displayed to user.
-Apr. 23, 2021 6:43:47 PM controller.UIController listenToEvents
+Apr. 24, 2021 5:24:14 PM controller.UIController listenToEvents
 INFO: Userinput: u
-Apr. 23, 2021 6:43:47 PM controller.UIController processUserInput
+Apr. 24, 2021 5:24:14 PM controller.UIController processUserInput
 INFO: User input succesfully processed.
-Apr. 23, 2021 6:43:47 PM controller.UIController showContextMenuDialogue
+Apr. 24, 2021 5:24:14 PM controller.UIController showContextMenuDialogue
 INFO: Context menu displayed to user.
-Apr. 23, 2021 6:44:41 PM controller.UIController listenToEvents
-INFO: Userinput: lotto
-Apr. 23, 2021 6:44:41 PM controller.GenerationController generateLottoBet
-INFO: Lotto bet generated.
-Apr. 23, 2021 6:44:41 PM controller.UIController processUserInput
+Apr. 24, 2021 5:24:16 PM controller.UIController listenToEvents
+INFO: Userinput: w
+Apr. 24, 2021 5:24:16 PM controller.UIController processUserInput
 INFO: User input succesfully processed.
-Apr. 23, 2021 6:44:41 PM controller.UIController showContextMenuDialogue
+Apr. 24, 2021 5:24:16 PM controller.UIController showContextMenuDialogue
 INFO: Context menu displayed to user.
-Apr. 23, 2021 6:45:04 PM controller.UIController listenToEvents
+Apr. 24, 2021 5:24:17 PM controller.UIController listenToEvents
+INFO: Userinput: w
+Apr. 24, 2021 5:24:17 PM controller.UIController processUserInput
+INFO: User input succesfully processed.
+Apr. 24, 2021 5:24:17 PM controller.UIController showContextMenuDialogue
+INFO: Context menu displayed to user.
+Apr. 24, 2021 5:24:18 PM controller.UIController listenToEvents
+INFO: Userinput: e
+Apr. 24, 2021 5:24:18 PM controller.UIController processUserInput
+INFO: User input succesfully processed.
+Apr. 24, 2021 5:24:18 PM controller.UIController showContextMenuDialogue
+INFO: Context menu displayed to user.
+Apr. 24, 2021 5:24:23 PM controller.UIController listenToEvents
 INFO: Userinput: euro
-Apr. 23, 2021 6:45:04 PM controller.GenerationController generateEurojackpotBet
+Apr. 24, 2021 5:24:23 PM controller.GenerationController generateEurojackpotBet
 INFO: Eurojackpot bet generated
-Apr. 23, 2021 6:45:04 PM controller.UIController processUserInput
+Apr. 24, 2021 5:24:23 PM controller.UIController processUserInput
 INFO: User input succesfully processed.
-Apr. 23, 2021 6:45:04 PM controller.UIController showContextMenuDialogue
+Apr. 24, 2021 5:24:23 PM controller.UIController showContextMenuDialogue
 INFO: Context menu displayed to user.
-Apr. 23, 2021 6:45:27 PM controller.UIController listenToEvents
-INFO: Userinput: d
-Apr. 23, 2021 6:45:27 PM controller.LogController save
-INFO: Unlucky numbers saved.
-Apr. 23, 2021 6:45:27 PM controller.UIController processUserInput
+Apr. 24, 2021 5:24:28 PM controller.UIController listenToEvents
+INFO: Userinput: lotto
+Apr. 24, 2021 5:24:28 PM controller.GenerationController generateLottoBet
+INFO: Lotto bet generated.
+Apr. 24, 2021 5:24:28 PM controller.UIController processUserInput
 INFO: User input succesfully processed.
-Apr. 23, 2021 6:45:27 PM controller.UIController showContextMenuDialogue
+Apr. 24, 2021 5:24:28 PM controller.UIController showContextMenuDialogue
 INFO: Context menu displayed to user.
-Apr. 23, 2021 6:45:58 PM controller.UIController listenToEvents
-INFO: Userinput: b
-Apr. 23, 2021 6:45:58 PM controller.UIController processUserInput
+Apr. 24, 2021 5:24:33 PM controller.UIController listenToEvents
+INFO: Userinput: u
+Apr. 24, 2021 5:24:33 PM controller.UIController processUserInput
 INFO: User input succesfully processed.
-Apr. 23, 2021 6:45:58 PM controller.UIController listenToEvents
-INFO: Application terminates.
+Apr. 24, 2021 5:24:33 PM controller.UIController showContextMenuDialogue
+INFO: Context menu displayed to user.

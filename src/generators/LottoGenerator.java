@@ -3,12 +3,23 @@ package generators;
 import java.util.Collection;
 import java.util.Random;
 
+/**
+ * {@code LottoGenerator} generates a quick tipp for Lotto. It is
+ * possible to choose numbers, which the quick tipp cannot contain.
+ * 
+ * @author Nils Mempel
+ *
+ */
 public class LottoGenerator implements BetGenerator {
 
+	/* length, minimum and maximum number of the bet */
 	private static final int BET_LENGTH = 5;
 	private static final int MINIMUM_BETNUMBER = 1;
 	private static final int MAXIMUM_BETNUMBER = 49;
 
+	/**
+	 * Calls construtor of super class.
+	 */
 	public LottoGenerator() {
 		super();
 	}
