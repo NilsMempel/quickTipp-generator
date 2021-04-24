@@ -6,6 +6,12 @@ import java.util.logging.Logger;
 
 import util.IllegalUserInputException;
 
+/**
+ * Handles communication with the user through the console.
+ * 
+ * @author Nils Mempel
+ *
+ */
 public class UIController {
 
 	/* controller */

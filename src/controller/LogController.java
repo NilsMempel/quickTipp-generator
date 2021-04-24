@@ -9,6 +9,12 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.SimpleFormatter;
 
+/**
+ * Controls the Logging of the application and loading/saving of the unlucky numbers.
+ * 
+ * @author Nils Mempel
+ *
+ */
 public class LogController {
 
 	/* controller */

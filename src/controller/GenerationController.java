@@ -9,6 +9,12 @@ import generators.EurojackpotGenerator;
 import generators.LottoGenerator;
 import util.IllegalUserInputException;
 
+/**
+ * Controls the generation of quick tipps.
+ * 
+ * @author Nils Mempel
+ *
+ */
 public class GenerationController {
 
 	/* controller */
