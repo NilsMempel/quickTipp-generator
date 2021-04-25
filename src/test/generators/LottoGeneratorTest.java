@@ -10,8 +10,15 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import generators.EurojackpotGenerator;
 import generators.LottoGenerator;
 
+/**
+ * Test of class {@link LottoGenerator}.
+ * 
+ * @author Nils Mempel
+ *
+ */
 class LottoGeneratorTest {
 
 	private LottoGenerator lottoGenerator = new LottoGenerator();
@@ -26,6 +33,10 @@ class LottoGeneratorTest {
 	/* number of iterations of generating */
 	private int runs = 100;
 
+	/** 
+	 * Sets up test data.
+	 * @throws Exception
+	 */
 	@BeforeEach
 	void setUp() throws Exception {
 		/* testdata for unlucky numbers */
@@ -36,6 +47,9 @@ class LottoGeneratorTest {
 		list5 = Arrays.asList(-4, -5, -45, 0, 4, 4);
 	}
 
+	/**
+	 * Shows a generated quick tipp and the assigned unlucky numbers.
+	 */
 	@Test
 	void show() {
 
@@ -44,11 +58,24 @@ class LottoGeneratorTest {
 		System.out.println(Arrays.toString(lottoGenerator.generateBet(list2)));
 	}
 
+	/**
+	 * Test if {@link LottoGenerator#generateBet(java.util.Collection)}
+	 * generates a valid quick tipp which means:
+	 * <ul>
+	 * <li>No duplicates in the generated quick tipp
+	 * <li>Contains no number of the given input
+	 * <li>Contains only numbers in range [1,50]
+	 * </ul>
+	 */
 	@Test
 	void testGenerationOfUnluckyNumbers() {
 		/* contains every generated tipp number */
 		List<Integer> collection1 = new LinkedList<>();
 		List<Integer> collection2 = new LinkedList<>();
+
+		/* contains the currently generated tipp numbers */
+		List<Integer> collectionCurrent1 = new LinkedList<>();
+		List<Integer> collectionCurrent2 = new LinkedList<>();
 
 		int[] generatedNumbers1;
 		int[] generatedNumbers2;
@@ -58,15 +85,26 @@ class LottoGeneratorTest {
 			generatedNumbers1 = lottoGenerator.generateBet(list1);
 			generatedNumbers2 = lottoGenerator.generateBet(list2);
 
-			/* add generated tipp numbers and check if any number is not in [1,49] */
+			/*
+			 * add generated tipp numbers and check if any number is not in [1,49] if and if
+			 * any number was generated before in the current generation
+			 */
 			for (int num : generatedNumbers1) {
 				collection1.add(num);
 				assertTrue(1 <= num && num <= 49);
+				assertFalse(collectionCurrent1.contains(num));
+				collectionCurrent1.add(num);
 			}
 			for (int num : generatedNumbers2) {
 				collection2.add(num);
 				assertTrue(1 <= num && num <= 49);
+				assertFalse(collectionCurrent2.contains(num));
+				collectionCurrent2.add(num);
 			}
+
+			collectionCurrent1.clear();
+			collectionCurrent2.clear();
+
 		}
 
 		/* sorting for better performance */
@@ -88,6 +126,10 @@ class LottoGeneratorTest {
 		assertFalse(hasDuplicates2);
 	}
 
+	/**
+	 * Test if {@link LottoGenerator#generateBet(java.util.Collection)} modifies the
+	 * argument.
+	 */
 	@Test
 	void testModifiesArgument() {
 		List<Integer> listCopy1 = new LinkedList<>();

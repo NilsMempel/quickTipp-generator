@@ -9,8 +9,17 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import controller.GenerationController;
+import generators.BetGenerator;
 import generators.EurojackpotGenerator;
+import generators.LottoGenerator;
 
+/**
+ * Test of class {@link EurojackpotGenerator}.
+ * 
+ * @author Nils Mempel
+ *
+ */
 class EurojackpotGeneratorTest {
 
 	private EurojackpotGenerator eurojackpotGenerator = new EurojackpotGenerator();
@@ -25,16 +34,23 @@ class EurojackpotGeneratorTest {
 	/* number of iterations of generating */
 	private int runs = 100;
 
+	/** 
+	 * Sets up test data.
+	 * @throws Exception
+	 */
 	@BeforeEach
 	void setUp() throws Exception {
 		/* testdata for unlucky numbers */
 		list1 = Arrays.asList(1, 2, 3, 4, 5, 6);
-		list2 = Arrays.asList(55, 2, 6, 32, 49);
+		list2 = Arrays.asList(55, 2, -1, 32, 49);
 		list3 = Arrays.asList(22, 5, 7, 55, 35, 7568, 8, 45, 345, 6, 80, 223);
 		list4 = Arrays.asList(5);
 		list5 = Arrays.asList(-4, -5, -45, 0, 4, 4);
 	}
 
+	/**
+	 * Shows a generated quick tipp and the assigned unlucky numbers.
+	 */
 	@Test
 	void show() {
 
@@ -43,11 +59,24 @@ class EurojackpotGeneratorTest {
 		System.out.println(Arrays.toString(eurojackpotGenerator.generateBet(list2)));
 	}
 
+	/**
+	 * Test if {@link EurojackpotGenerator#generateBet(java.util.Collection)}
+	 * generates a valid quick tipp which means:
+	 * <ul>
+	 * <li>No duplicates in the first part and in the second part
+	 * <li>Contains no number of the given input
+	 * <li>Contains only numbers in range [1,50]
+	 * </ul>
+	 */
 	@Test
 	void testGenerationOfUnluckyNumbers() {
 		/* contains every generated tipp number */
 		List<Integer> collection1 = new LinkedList<>();
 		List<Integer> collection2 = new LinkedList<>();
+
+		/* contains the currently generated tipp numbers */
+		List<Integer> collectionCurrent1 = new LinkedList<>();
+		List<Integer> collectionCurrent2 = new LinkedList<>();
 
 		int[] generatedNumbers1;
 		int[] generatedNumbers2;
@@ -57,15 +86,36 @@ class EurojackpotGeneratorTest {
 			generatedNumbers1 = eurojackpotGenerator.generateBet(list1);
 			generatedNumbers2 = eurojackpotGenerator.generateBet(list2);
 
-			/* add generated tipp numbers and check if any number is not in [1,50] */
-			for (int num : generatedNumbers1) {
+			/*
+			 * add generated tipp numbers and check if any number is not in [1,50] and if
+			 * any number was generated before in the current generation for the first part
+			 */
+			for (int j = 0, num = generatedNumbers1[j]; j < 5; j++, num = generatedNumbers1[j]) {
 				collection1.add(num);
 				assertTrue(1 <= num && num <= 50);
+				assertFalse(collectionCurrent1.contains(num));
+				collectionCurrent1.add(num);
 			}
-			for (int num : generatedNumbers2) {
+			for (int j = 0, num = generatedNumbers2[j]; j < 5; j++, num = generatedNumbers2[j]) {
 				collection2.add(num);
 				assertTrue(1 <= num && num <= 50);
+				assertFalse(collectionCurrent2.contains(num));
+				collectionCurrent2.add(num);
 			}
+
+			collectionCurrent1.clear();
+			collectionCurrent2.clear();
+
+			/* check for duplicates in the second part */
+			assertTrue(generatedNumbers1[5] != generatedNumbers1[6]);
+			assertTrue(generatedNumbers2[5] != generatedNumbers2[6]);
+
+			/* check if any number is not in [1,50] for the second part */
+			assertTrue(1 <= generatedNumbers1[5] && generatedNumbers1[5] <= 50);
+			assertTrue(1 <= generatedNumbers1[6] && generatedNumbers1[6] <= 50);
+			assertTrue(1 <= generatedNumbers2[5] && generatedNumbers2[5] <= 50);
+			assertTrue(1 <= generatedNumbers2[6] && generatedNumbers2[6] <= 50);
+
 		}
 
 		/* sorting for better performance */
@@ -88,6 +138,10 @@ class EurojackpotGeneratorTest {
 
 	}
 
+	/**
+	 * Test if {@link EurojackpotGenerator#generateBet(java.util.Collection)} modifies the
+	 * argument.
+	 */
 	@Test
 	void testModifiesArgument() {
 		List<Integer> listCopy1 = new LinkedList<>();
